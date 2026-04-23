@@ -5,7 +5,7 @@ let SERVICE_UUID        = CBUUID(string: "12345678-1234-1234-1234-123456789abc")
 let CHARACTERISTIC_UUID = CBUUID(string: "abcdefab-cdef-abcd-efab-cdefabcdefab")
 
 // ─────────────────────────────────────────────
-//  BLE Manager
+//  BLE Manager (used by the UI)
 // ─────────────────────────────────────────────
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
 
@@ -22,7 +22,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
-    // ── Scan for Windows ──
     func startScan() {
         guard centralManager.state == .poweredOn else {
             status = "Bluetooth not ready"
@@ -32,7 +31,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         centralManager.scanForPeripherals(withServices: [SERVICE_UUID], options: nil)
     }
 
-    // ── Send user input to Windows ──
     func sendData(_ text: String) {
         guard let peripheral = peripheral,
               let characteristic = dataCharacteristic else {
@@ -40,8 +38,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             return
         }
         guard let data = text.data(using: .utf8) else { return }
-
-        // .withResponse means Windows will acknowledge receipt
         peripheral.writeValue(data, for: characteristic, type: .withResponse)
         status = "Sent! Waiting for response..."
     }
@@ -112,13 +108,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         guard let characteristics = service.characteristics else { return }
         for char in characteristics where char.uuid == CHARACTERISTIC_UUID {
             dataCharacteristic = char
-            // Subscribe so Windows can notify us with the response
             peripheral.setNotifyValue(true, for: char)
             status = "Ready. Type something and tap Send."
         }
     }
 
-    // ── Windows notifies us with "bywindows <data>" ──
     func peripheral(_ peripheral: CBPeripheral,
                     didUpdateValueFor characteristic: CBCharacteristic,
                     error: Error?) {
@@ -135,7 +129,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         status = "Response received!"
     }
 
-    // Called after writeValue completes
     func peripheral(_ peripheral: CBPeripheral,
                     didWriteValueFor characteristic: CBCharacteristic,
                     error: Error?) {
@@ -154,31 +147,27 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("BLE Client")
+            Text("TransmitBLE")
                 .font(.largeTitle).bold()
 
-            // Status
             Text(ble.status)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
-            // User input field
             TextField("Type your message...", text: $userInput)
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal)
                 .disabled(!ble.isConnected)
 
-            // Send button
             Button("Send to Windows") {
                 ble.sendData(userInput)
-                userInput = "" // clear after sending
+                userInput = ""
             }
             .buttonStyle(.borderedProminent)
             .disabled(!ble.isConnected || userInput.isEmpty)
 
-            // Response from Windows
             GroupBox("Response from Windows") {
                 Text(ble.response.isEmpty ? "Nothing yet..." : ble.response)
                     .font(.system(.body, design: .monospaced))
@@ -187,7 +176,6 @@ struct ContentView: View {
             }
             .padding(.horizontal)
 
-            // Scan / Disconnect
             HStack(spacing: 16) {
                 Button("Scan") {
                     ble.startScan()

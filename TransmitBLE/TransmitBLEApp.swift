@@ -1,10 +1,3 @@
-//
-//  TransmitBLEApp.swift
-//  TransmitBLE
-//
-//  Created by Mohammad Ayaan Qureshi on 4/23/26.
-//
-
 import SwiftUI
 
 @main
