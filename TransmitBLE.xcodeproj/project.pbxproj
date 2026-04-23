@@ -14,6 +14,9 @@
 		DB45C8B92F9AC8F1004BCA43 /* TransmitBLETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8B82F9AC8F1004BCA43 /* TransmitBLETests.swift */; };
 		DB45C8C32F9AC8F1004BCA43 /* TransmitBLEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8C22F9AC8F1004BCA43 /* TransmitBLEUITests.swift */; };
 		DB45C8C52F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8C42F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift */; };
+		/* NEW: BLEIntentManager and SendToBLEIntent */
+		AABB00012F9AC8EE004BCA43 /* BLEIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00002F9AC8EE004BCA43 /* BLEIntentManager.swift */; };
+		AABB00032F9AC8EE004BCA43 /* SendToBLEIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00022F9AC8EE004BCA43 /* SendToBLEIntent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		DB45C8BE2F9AC8F1004BCA43 /* TransmitBLEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransmitBLEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB45C8C22F9AC8F1004BCA43 /* TransmitBLEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitBLEUITests.swift; sourceTree = "<group>"; };
 		DB45C8C42F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitBLEUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		/* NEW */
+		AABB00002F9AC8EE004BCA43 /* BLEIntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEIntentManager.swift; sourceTree = "<group>"; };
+		AABB00022F9AC8EE004BCA43 /* SendToBLEIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToBLEIntent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,8 @@
 			children = (
 				DB45C8A72F9AC8EE004BCA43 /* TransmitBLEApp.swift */,
 				DB45C8A92F9AC8EE004BCA43 /* ContentView.swift */,
+				AABB00002F9AC8EE004BCA43 /* BLEIntentManager.swift */,
+				AABB00022F9AC8EE004BCA43 /* SendToBLEIntent.swift */,
 				DB45C8AB2F9AC8F0004BCA43 /* Assets.xcassets */,
 				DB45C8AD2F9AC8F0004BCA43 /* Preview Content */,
 			);
@@ -259,6 +267,8 @@
 			files = (
 				DB45C8AA2F9AC8EE004BCA43 /* ContentView.swift in Sources */,
 				DB45C8A82F9AC8EE004BCA43 /* TransmitBLEApp.swift in Sources */,
+				AABB00012F9AC8EE004BCA43 /* BLEIntentManager.swift in Sources */,
+				AABB00032F9AC8EE004BCA43 /* SendToBLEIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
