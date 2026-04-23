@@ -1,7 +1,6 @@
 import SwiftUI
 import CoreBluetooth
 
-// ── Must match Windows exactly ──
 let SERVICE_UUID        = CBUUID(string: "12345678-1234-1234-1234-123456789abc")
 let CHARACTERISTIC_UUID = CBUUID(string: "abcdefab-cdef-abcd-efab-cdefabcdefab")
 
@@ -15,7 +14,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     private var dataCharacteristic: CBCharacteristic?
 
     @Published var status: String = "Initializing..."
-    @Published var receivedData: String = ""
+    @Published var response: String = ""
     @Published var isConnected: Bool = false
 
     override init() {
@@ -23,22 +22,28 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
+    // ── Scan for Windows ──
     func startScan() {
         guard centralManager.state == .poweredOn else {
             status = "Bluetooth not ready"
             return
         }
-        status = "Scanning for Windows device..."
+        status = "Scanning for Windows..."
         centralManager.scanForPeripherals(withServices: [SERVICE_UUID], options: nil)
     }
 
-    func requestData() {
-        guard let characteristic = dataCharacteristic else {
-            status = "Not connected yet"
+    // ── Send user input to Windows ──
+    func sendData(_ text: String) {
+        guard let peripheral = peripheral,
+              let characteristic = dataCharacteristic else {
+            status = "Not connected"
             return
         }
-        peripheral?.readValue(for: characteristic)
-        status = "Requesting data..."
+        guard let data = text.data(using: .utf8) else { return }
+
+        // .withResponse means Windows will acknowledge receipt
+        peripheral.writeValue(data, for: characteristic, type: .withResponse)
+        status = "Sent! Waiting for response..."
     }
 
     func disconnect() {
@@ -64,13 +69,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                         rssi RSSI: NSNumber) {
         self.peripheral = peripheral
         centralManager.stopScan()
-        status = "Found device. Connecting..."
+        status = "Found Windows. Connecting..."
         centralManager.connect(peripheral, options: nil)
     }
 
     func centralManager(_ central: CBCentralManager,
                         didConnect peripheral: CBPeripheral) {
-        status = "Connected! Discovering services..."
+        status = "Connected! Setting up..."
         isConnected = true
         peripheral.delegate = self
         peripheral.discoverServices([SERVICE_UUID])
@@ -88,7 +93,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func centralManager(_ central: CBCentralManager,
                         didFailToConnect peripheral: CBPeripheral,
                         error: Error?) {
-        status = "Failed to connect: \(error?.localizedDescription ?? "unknown")"
+        status = "Failed: \(error?.localizedDescription ?? "unknown")"
     }
 
     // MARK: - CBPeripheralDelegate
@@ -97,7 +102,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                     didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
         for service in services where service.uuid == SERVICE_UUID {
-            status = "Service found. Discovering characteristics..."
             peripheral.discoverCharacteristics([CHARACTERISTIC_UUID], for: service)
         }
     }
@@ -108,27 +112,36 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         guard let characteristics = service.characteristics else { return }
         for char in characteristics where char.uuid == CHARACTERISTIC_UUID {
             dataCharacteristic = char
-            if char.properties.contains(.notify) {
-                peripheral.setNotifyValue(true, for: char)
-            }
-            status = "Ready. Tap 'Request Data'."
+            // Subscribe so Windows can notify us with the response
+            peripheral.setNotifyValue(true, for: char)
+            status = "Ready. Type something and tap Send."
         }
     }
 
+    // ── Windows notifies us with "bywindows <data>" ──
     func peripheral(_ peripheral: CBPeripheral,
                     didUpdateValueFor characteristic: CBCharacteristic,
                     error: Error?) {
         if let error = error {
-            status = "Read error: \(error.localizedDescription)"
+            status = "Error: \(error.localizedDescription)"
             return
         }
         guard let data = characteristic.value,
               let string = String(data: data, encoding: .utf8) else {
-            status = "Received unreadable data"
+            status = "Unreadable response"
             return
         }
-        receivedData = string
-        status = "Data received!"
+        response = string
+        status = "Response received!"
+    }
+
+    // Called after writeValue completes
+    func peripheral(_ peripheral: CBPeripheral,
+                    didWriteValueFor characteristic: CBCharacteristic,
+                    error: Error?) {
+        if let error = error {
+            status = "Write failed: \(error.localizedDescription)"
+        }
     }
 }
 
@@ -137,38 +150,50 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 // ─────────────────────────────────────────────
 struct ContentView: View {
     @StateObject private var ble = BLEManager()
+    @State private var userInput: String = ""
 
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 20) {
             Text("BLE Client")
                 .font(.largeTitle).bold()
 
+            // Status
             Text(ble.status)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
-            GroupBox("Received from Windows") {
-                Text(ble.receivedData.isEmpty ? "Nothing yet" : ble.receivedData)
+            // User input field
+            TextField("Type your message...", text: $userInput)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+                .disabled(!ble.isConnected)
+
+            // Send button
+            Button("Send to Windows") {
+                ble.sendData(userInput)
+                userInput = "" // clear after sending
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(!ble.isConnected || userInput.isEmpty)
+
+            // Response from Windows
+            GroupBox("Response from Windows") {
+                Text(ble.response.isEmpty ? "Nothing yet..." : ble.response)
                     .font(.system(.body, design: .monospaced))
                     .frame(maxWidth: .infinity, minHeight: 60, alignment: .topLeading)
                     .padding(4)
             }
             .padding(.horizontal)
 
+            // Scan / Disconnect
             HStack(spacing: 16) {
                 Button("Scan") {
                     ble.startScan()
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(ble.isConnected)
-
-                Button("Request Data") {
-                    ble.requestData()
-                }
                 .buttonStyle(.bordered)
-                .disabled(!ble.isConnected)
+                .disabled(ble.isConnected)
 
                 Button("Disconnect") {
                     ble.disconnect()
@@ -182,7 +207,6 @@ struct ContentView: View {
     }
 }
 
-//	 FIX: replaced #Preview (Xcode 15+ only) with PreviewProvider (works on all versions)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
