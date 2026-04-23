@@ -28,8 +28,8 @@ jobs:
       - name: Build app (no signing)
         run: |
           xcodebuild clean build \
-            -project BLEClient.xcodeproj \
-            -scheme BLEClient \
+            -project TransmitBLE.xcodeproj \
+            -scheme TransmitBLE \
             -configuration Release \
             -sdk iphoneos \
             -destination "generic/platform=iOS" \
@@ -42,15 +42,15 @@ jobs:
       - name: Package into IPA
         run: |
           mkdir -p ${{ github.workspace }}/ipa/Payload
-          cp -r ${{ github.workspace }}/build/Release-iphoneos/BLEClient.app \
-                ${{ github.workspace }}/ipa/Payload/BLEClient.app
+          cp -r ${{ github.workspace }}/build/Release-iphoneos/TransmitBLE.app \
+                ${{ github.workspace }}/ipa/Payload/TransmitBLE.app
           cd ${{ github.workspace }}/ipa
-          zip -r ../BLEClient-unsigned.ipa Payload
+          zip -r ../TransmitBLE-unsigned.ipa Payload
 
       # 6. Upload the IPA as a build artifact
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: BLEClient-unsigned
-          path: ${{ github.workspace }}/BLEClient-unsigned.ipa
+          name: TransmitBLE-unsigned
+          path: ${{ github.workspace }}/TransmitBLE-unsigned.ipa
           retention-days: 7
