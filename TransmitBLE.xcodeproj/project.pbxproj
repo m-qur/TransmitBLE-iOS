@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB45C8A82F9AC8EE004BCA43 /* TransmitBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8A72F9AC8EE004BCA43 /* TransmitBLEApp.swift */; };
+		DB45C8AA2F9AC8EE004BCA43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8A92F9AC8EE004BCA43 /* ContentView.swift */; };
+		DB45C8AC2F9AC8F0004BCA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB45C8AB2F9AC8F0004BCA43 /* Assets.xcassets */; };
+		DB45C8AF2F9AC8F0004BCA43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB45C8AE2F9AC8F0004BCA43 /* Preview Assets.xcassets */; };
+		DB45C8B92F9AC8F1004BCA43 /* TransmitBLETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8B82F9AC8F1004BCA43 /* TransmitBLETests.swift */; };
+		DB45C8C32F9AC8F1004BCA43 /* TransmitBLEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8C22F9AC8F1004BCA43 /* TransmitBLEUITests.swift */; };
+		DB45C8C52F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8C42F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB45C8B52F9AC8F1004BCA43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB45C89C2F9AC8EE004BCA43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB45C8A32F9AC8EE004BCA43;
+			remoteInfo = TransmitBLE;
+		};
+		DB45C8BF2F9AC8F1004BCA43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB45C89C2F9AC8EE004BCA43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB45C8A32F9AC8EE004BCA43;
+			remoteInfo = TransmitBLE;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB45C8A42F9AC8EE004BCA43 /* TransmitBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransmitBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB45C8A72F9AC8EE004BCA43 /* TransmitBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitBLEApp.swift; sourceTree = "<group>"; };
+		DB45C8A92F9AC8EE004BCA43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DB45C8AB2F9AC8F0004BCA43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB45C8AE2F9AC8F0004BCA43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DB45C8B42F9AC8F1004BCA43 /* TransmitBLETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransmitBLETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB45C8B82F9AC8F1004BCA43 /* TransmitBLETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitBLETests.swift; sourceTree = "<group>"; };
+		DB45C8BE2F9AC8F1004BCA43 /* TransmitBLEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransmitBLEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB45C8C22F9AC8F1004BCA43 /* TransmitBLEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitBLEUITests.swift; sourceTree = "<group>"; };
+		DB45C8C42F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitBLEUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB45C8A12F9AC8EE004BCA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45C8B12F9AC8F1004BCA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45C8BB2F9AC8F1004BCA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB45C89B2F9AC8EE004BCA43 = {
+			isa = PBXGroup;
+			children = (
+				DB45C8A62F9AC8EE004BCA43 /* TransmitBLE */,
+				DB45C8B72F9AC8F1004BCA43 /* TransmitBLETests */,
+				DB45C8C12F9AC8F1004BCA43 /* TransmitBLEUITests */,
+				DB45C8A52F9AC8EE004BCA43 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB45C8A52F9AC8EE004BCA43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB45C8A42F9AC8EE004BCA43 /* TransmitBLE.app */,
+				DB45C8B42F9AC8F1004BCA43 /* TransmitBLETests.xctest */,
+				DB45C8BE2F9AC8F1004BCA43 /* TransmitBLEUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB45C8A62F9AC8EE004BCA43 /* TransmitBLE */ = {
+			isa = PBXGroup;
+			children = (
+				DB45C8A72F9AC8EE004BCA43 /* TransmitBLEApp.swift */,
+				DB45C8A92F9AC8EE004BCA43 /* ContentView.swift */,
+				DB45C8AB2F9AC8F0004BCA43 /* Assets.xcassets */,
+				DB45C8AD2F9AC8F0004BCA43 /* Preview Content */,
+			);
+			path = TransmitBLE;
+			sourceTree = "<group>";
+		};
+		DB45C8AD2F9AC8F0004BCA43 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DB45C8AE2F9AC8F0004BCA43 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DB45C8B72F9AC8F1004BCA43 /* TransmitBLETests */ = {
+			isa = PBXGroup;
+			children = (
+				DB45C8B82F9AC8F1004BCA43 /* TransmitBLETests.swift */,
+			);
+			path = TransmitBLETests;
+			sourceTree = "<group>";
+		};
+		DB45C8C12F9AC8F1004BCA43 /* TransmitBLEUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DB45C8C22F9AC8F1004BCA43 /* TransmitBLEUITests.swift */,
+				DB45C8C42F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift */,
+			);
+			path = TransmitBLEUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB45C8A32F9AC8EE004BCA43 /* TransmitBLE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB45C8C82F9AC8F1004BCA43 /* Build configuration list for PBXNativeTarget "TransmitBLE" */;
+			buildPhases = (
+				DB45C8A02F9AC8EE004BCA43 /* Sources */,
+				DB45C8A12F9AC8EE004BCA43 /* Frameworks */,
+				DB45C8A22F9AC8EE004BCA43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TransmitBLE;
+			productName = TransmitBLE;
+			productReference = DB45C8A42F9AC8EE004BCA43 /* TransmitBLE.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB45C8B32F9AC8F1004BCA43 /* TransmitBLETests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB45C8CB2F9AC8F1004BCA43 /* Build configuration list for PBXNativeTarget "TransmitBLETests" */;
+			buildPhases = (
+				DB45C8B02F9AC8F1004BCA43 /* Sources */,
+				DB45C8B12F9AC8F1004BCA43 /* Frameworks */,
+				DB45C8B22F9AC8F1004BCA43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB45C8B62F9AC8F1004BCA43 /* PBXTargetDependency */,
+			);
+			name = TransmitBLETests;
+			productName = TransmitBLETests;
+			productReference = DB45C8B42F9AC8F1004BCA43 /* TransmitBLETests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB45C8BD2F9AC8F1004BCA43 /* TransmitBLEUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB45C8CE2F9AC8F1004BCA43 /* Build configuration list for PBXNativeTarget "TransmitBLEUITests" */;
+			buildPhases = (
+				DB45C8BA2F9AC8F1004BCA43 /* Sources */,
+				DB45C8BB2F9AC8F1004BCA43 /* Frameworks */,
+				DB45C8BC2F9AC8F1004BCA43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB45C8C02F9AC8F1004BCA43 /* PBXTargetDependency */,
+			);
+			name = TransmitBLEUITests;
+			productName = TransmitBLEUITests;
+			productReference = DB45C8BE2F9AC8F1004BCA43 /* TransmitBLEUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB45C89C2F9AC8EE004BCA43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					DB45C8A32F9AC8EE004BCA43 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					DB45C8B32F9AC8F1004BCA43 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = DB45C8A32F9AC8EE004BCA43;
+					};
+					DB45C8BD2F9AC8F1004BCA43 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = DB45C8A32F9AC8EE004BCA43;
+					};
+				};
+			};
+			buildConfigurationList = DB45C89F2F9AC8EE004BCA43 /* Build configuration list for PBXProject "TransmitBLE" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB45C89B2F9AC8EE004BCA43;
+			productRefGroup = DB45C8A52F9AC8EE004BCA43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB45C8A32F9AC8EE004BCA43 /* TransmitBLE */,
+				DB45C8B32F9AC8F1004BCA43 /* TransmitBLETests */,
+				DB45C8BD2F9AC8F1004BCA43 /* TransmitBLEUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB45C8A22F9AC8EE004BCA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB45C8AF2F9AC8F0004BCA43 /* Preview Assets.xcassets in Resources */,
+				DB45C8AC2F9AC8F0004BCA43 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45C8B22F9AC8F1004BCA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45C8BC2F9AC8F1004BCA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB45C8A02F9AC8EE004BCA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB45C8AA2F9AC8EE004BCA43 /* ContentView.swift in Sources */,
+				DB45C8A82F9AC8EE004BCA43 /* TransmitBLEApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45C8B02F9AC8F1004BCA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB45C8B92F9AC8F1004BCA43 /* TransmitBLETests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45C8BA2F9AC8F1004BCA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB45C8C52F9AC8F1004BCA43 /* TransmitBLEUITestsLaunchTests.swift in Sources */,
+				DB45C8C32F9AC8F1004BCA43 /* TransmitBLEUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB45C8B62F9AC8F1004BCA43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB45C8A32F9AC8EE004BCA43 /* TransmitBLE */;
+			targetProxy = DB45C8B52F9AC8F1004BCA43 /* PBXContainerItemProxy */;
+		};
+		DB45C8C02F9AC8F1004BCA43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB45C8A32F9AC8EE004BCA43 /* TransmitBLE */;
+			targetProxy = DB45C8BF2F9AC8F1004BCA43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DB45C8C62F9AC8F1004BCA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB45C8C72F9AC8F1004BCA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB45C8C92F9AC8F1004BCA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TransmitBLE/Preview Content\"";
+				DEVELOPMENT_TEAM = 2VR954Z8KR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Used to connect to Windows";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohay.transmitble.TransmitBLE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB45C8CA2F9AC8F1004BCA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TransmitBLE/Preview Content\"";
+				DEVELOPMENT_TEAM = 2VR954Z8KR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Used to connect to Windows";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohay.transmitble.TransmitBLE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DB45C8CC2F9AC8F1004BCA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohay.transmitble.TransmitBLETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransmitBLE.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TransmitBLE";
+			};
+			name = Debug;
+		};
+		DB45C8CD2F9AC8F1004BCA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohay.transmitble.TransmitBLETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransmitBLE.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TransmitBLE";
+			};
+			name = Release;
+		};
+		DB45C8CF2F9AC8F1004BCA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohay.transmitble.TransmitBLEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TransmitBLE;
+			};
+			name = Debug;
+		};
+		DB45C8D02F9AC8F1004BCA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohay.transmitble.TransmitBLEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TransmitBLE;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB45C89F2F9AC8EE004BCA43 /* Build configuration list for PBXProject "TransmitBLE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB45C8C62F9AC8F1004BCA43 /* Debug */,
+				DB45C8C72F9AC8F1004BCA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB45C8C82F9AC8F1004BCA43 /* Build configuration list for PBXNativeTarget "TransmitBLE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB45C8C92F9AC8F1004BCA43 /* Debug */,
+				DB45C8CA2F9AC8F1004BCA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB45C8CB2F9AC8F1004BCA43 /* Build configuration list for PBXNativeTarget "TransmitBLETests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB45C8CC2F9AC8F1004BCA43 /* Debug */,
+				DB45C8CD2F9AC8F1004BCA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB45C8CE2F9AC8F1004BCA43 /* Build configuration list for PBXNativeTarget "TransmitBLEUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB45C8CF2F9AC8F1004BCA43 /* Debug */,
+				DB45C8D02F9AC8F1004BCA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB45C89C2F9AC8EE004BCA43 /* Project object */;
+}
