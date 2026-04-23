@@ -1,0 +1,56 @@
+name: Build Unsigned IPA
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # allows manual trigger from GitHub Actions tab
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # 1. Checkout the repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Select Xcode version
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      # 3. Show available SDKs (helpful for debugging)
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # 4. Build the app for a generic iOS device (no signing)
+      - name: Build app (no signing)
+        run: |
+          xcodebuild clean build \
+            -project BLEClient.xcodeproj \
+            -scheme BLEClient \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CONFIGURATION_BUILD_DIR=${{ github.workspace }}/build/Release-iphoneos
+
+      # 5. Package the .app into an unsigned .ipa
+      - name: Package into IPA
+        run: |
+          mkdir -p ${{ github.workspace }}/ipa/Payload
+          cp -r ${{ github.workspace }}/build/Release-iphoneos/BLEClient.app \
+                ${{ github.workspace }}/ipa/Payload/BLEClient.app
+          cd ${{ github.workspace }}/ipa
+          zip -r ../BLEClient-unsigned.ipa Payload
+
+      # 6. Upload the IPA as a build artifact
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BLEClient-unsigned
+          path: ${{ github.workspace }}/BLEClient-unsigned.ipa
+          retention-days: 7
