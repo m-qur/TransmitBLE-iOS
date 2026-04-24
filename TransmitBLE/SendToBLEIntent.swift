@@ -17,7 +17,7 @@ struct SendToBLEIntent: AppIntent {
 
     func perform() async throws -> some ReturnsValue<String> & ProvidesDialog {
         let response = try await BLEIntentManager.shared.send(message)
-        return .result(value: response)
+        return .result(value: response, dialog: "\(response)")
     }
 }
 
