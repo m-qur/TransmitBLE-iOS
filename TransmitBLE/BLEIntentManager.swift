@@ -34,24 +34,53 @@ class BLEIntentManager: NSObject, ObservableObject {
     private var connectContinuation: CheckedContinuation<Void, Error>?
     private var responseContinuation: CheckedContinuation<String, Error>?
 
+    // NEW: continuation that waits for CBCentralManager to power on
+    private var bluetoothReadyContinuation: CheckedContinuation<Void, Error>?
+
     private(set) var isConnected = false
 
     override init() {
         super.init()
+        // Use main queue so delegate callbacks are on the main actor
         centralManager = CBCentralManager(delegate: self, queue: .main)
     }
 
-    func connectAndWait() async throws {
-        guard centralManager.state == .poweredOn else {
+    // ── Wait for Bluetooth hardware to be ready ──
+    // CBCentralManager starts as .unknown and takes a moment to become .poweredOn
+    // This is the root cause of Shortcuts failing — the app skips this wait
+    private func waitForBluetoothReady() async throws {
+        if centralManager.state == .poweredOn { return }
+        if centralManager.state == .poweredOff ||
+           centralManager.state == .unauthorized ||
+           centralManager.state == .unsupported {
             throw BLEIntentError.bluetoothUnavailable
         }
+
+        // State is .unknown or .resetting — wait up to 5 seconds for it to settle
+        try await withCheckedThrowingContinuation { continuation in
+            bluetoothReadyContinuation = continuation
+
+            Task {
+                try await Task.sleep(nanoseconds: 5_000_000_000)
+                if self.bluetoothReadyContinuation != nil {
+                    self.bluetoothReadyContinuation?.resume(throwing: BLEIntentError.bluetoothUnavailable)
+                    self.bluetoothReadyContinuation = nil
+                }
+            }
+        }
+    }
+
+    // ── Connect and wait until characteristic is ready ──
+    func connectAndWait() async throws {
+        // Always wait for BT to be ready first — critical for Shortcuts
+        try await waitForBluetoothReady()
 
         try await withCheckedThrowingContinuation { continuation in
             connectContinuation = continuation
             centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
 
             Task {
-                try await Task.sleep(nanoseconds: 10_000_000_000)
+                try await Task.sleep(nanoseconds: 15_000_000_000) // 15s — more generous for Shortcuts
                 if self.connectContinuation != nil {
                     self.centralManager.stopScan()
                     self.connectContinuation?.resume(throwing: BLEIntentError.connectionTimeout)
@@ -61,6 +90,7 @@ class BLEIntentManager: NSObject, ObservableObject {
         }
     }
 
+    // ── Send message and wait for response ──
     func sendAndWait(_ message: String) async throws -> String {
         guard let peripheral = peripheral,
               let characteristic = characteristic else {
@@ -75,7 +105,7 @@ class BLEIntentManager: NSObject, ObservableObject {
             peripheral.writeValue(data, for: characteristic, type: .withResponse)
 
             Task {
-                try await Task.sleep(nanoseconds: 10_000_000_000)
+                try await Task.sleep(nanoseconds: 15_000_000_000)
                 if self.responseContinuation != nil {
                     self.responseContinuation?.resume(throwing: BLEIntentError.sendTimeout)
                     self.responseContinuation = nil
@@ -85,9 +115,24 @@ class BLEIntentManager: NSObject, ObservableObject {
     }
 }
 
+// MARK: - CBCentralManagerDelegate
 extension BLEIntentManager: CBCentralManagerDelegate {
 
-    nonisolated func centralManagerDidUpdateState(_ central: CBCentralManager) {}
+    nonisolated func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        Task { @MainActor in
+            switch central.state {
+            case .poweredOn:
+                // Resume the "wait for ready" continuation if it's waiting
+                self.bluetoothReadyContinuation?.resume()
+                self.bluetoothReadyContinuation = nil
+            case .poweredOff, .unauthorized, .unsupported:
+                self.bluetoothReadyContinuation?.resume(throwing: BLEIntentError.bluetoothUnavailable)
+                self.bluetoothReadyContinuation = nil
+            default:
+                break
+            }
+        }
+    }
 
     nonisolated func centralManager(_ central: CBCentralManager,
                         didDiscover peripheral: CBPeripheral,
@@ -129,6 +174,7 @@ extension BLEIntentManager: CBCentralManagerDelegate {
     }
 }
 
+// MARK: - CBPeripheralDelegate
 extension BLEIntentManager: CBPeripheralDelegate {
 
     nonisolated func peripheral(_ peripheral: CBPeripheral,
@@ -149,6 +195,7 @@ extension BLEIntentManager: CBPeripheralDelegate {
             for char in chars where char.uuid == self.characteristicUUID {
                 self.characteristic = char
                 peripheral.setNotifyValue(true, for: char)
+                // Connection fully ready
                 self.connectContinuation?.resume()
                 self.connectContinuation = nil
             }
