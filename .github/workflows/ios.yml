@@ -44,9 +44,11 @@ jobs:
           cd ${{ github.workspace }}/ipa
           zip -r ../TransmitBLE-unsigned.ipa Payload
 
-      - name: Upload IPA artifact
-        uses: actions/upload-artifact@v4
+      - name: Create Release and Upload IPA
+        uses: softprops/action-gh-release@v2
         with:
-          name: TransmitBLE-unsigned
-          path: ${{ github.workspace }}/TransmitBLE-unsigned.ipa
-          retention-days: 7
+          tag_name: build-${{ github.run_number }}
+          name: Build ${{ github.run_number }}
+          files: TransmitBLE-unsigned.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
