@@ -8,20 +8,10 @@ struct SendToBLEIntent: AppIntent {
     @Parameter(title: "Message", description: "The text to send to Windows")
     var message: String
 
-    @MainActor
     func perform() async throws -> some ReturnsValue<String> & ProvidesDialog {
-        let manager = BLEIntentManager.shared
-
-        if !manager.isConnected {
-            try await manager.connectAndWait()
-        }
-
-        let response = try await manager.sendAndWait(message)
-
-        return .result(
-            value: response,
-            dialog: "\(response)"
-        )
+        // No @MainActor here — BLEIntentManager uses its own bleQueue
+        let response = try await BLEIntentManager.shared.send(message)
+        return .result(value: response, dialog: "\(response)")
     }
 }
 
