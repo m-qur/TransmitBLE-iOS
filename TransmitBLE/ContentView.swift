@@ -27,7 +27,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             status = "Bluetooth not ready"
             return
         }
-        status = "Scanning for Windows..."
+        status = "Scanning..."
         centralManager.scanForPeripherals(withServices: [SERVICE_UUID], options: nil)
     }
 
@@ -65,7 +65,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                         rssi RSSI: NSNumber) {
         self.peripheral = peripheral
         centralManager.stopScan()
-        status = "Found Windows. Connecting..."
+        status = "Device Found. Connecting..."
         centralManager.connect(peripheral, options: nil)
     }
 
@@ -161,14 +161,14 @@ struct ContentView: View {
                 .padding(.horizontal)
                 .disabled(!ble.isConnected)
 
-            Button("Send to Windows") {
+            Button("Send") {
                 ble.sendData(userInput)
                 userInput = ""
             }
             .buttonStyle(.borderedProminent)
             .disabled(!ble.isConnected || userInput.isEmpty)
 
-            GroupBox("Response from Windows") {
+            GroupBox("Response") {
                 Text(ble.response.isEmpty ? "Nothing yet..." : ble.response)
                     .font(.system(.body, design: .monospaced))
                     .frame(maxWidth: .infinity, minHeight: 60, alignment: .topLeading)

@@ -25,7 +25,7 @@ struct TransmitBLEShortcuts: AppShortcutsProvider {
                 "Send BLE message via \(.applicationName)",
                 "Transmit via BLE with \(.applicationName)"
             ],
-            shortTitle: "Send to Windows",
+            shortTitle: "Send to Device",
             systemImageName: "antenna.radiowaves.left.and.right"
         )
     }

@@ -11,10 +11,10 @@ enum BLEIntentError: Error, CustomLocalizedStringResourceConvertible {
     var localizedStringResource: LocalizedStringResource {
         switch self {
         case .bluetoothUnavailable: return "Bluetooth is off or unauthorized."
-        case .connectionTimeout:    return "Could not find Windows PC."
+        case .connectionTimeout:    return "Could not find device."
         case .deviceNotFound:       return "Lost connection before sending."
-        case .sendTimeout:          return "No response from Windows."
-        case .noResponse:           return "Windows sent unreadable data."
+        case .sendTimeout:          return "No response from device."
+        case .noResponse:           return "Device sent unreadable data."
         }
     }
 }
