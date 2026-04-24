@@ -39,7 +39,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
         guard let data = text.data(using: .utf8) else { return }
         peripheral.writeValue(data, for: characteristic, type: .withResponse)
-        status = "Sent! Waiting for response..."
+        status = "Sent; waiting for response..."
     }
 
     func disconnect() {
@@ -52,7 +52,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
-        case .poweredOn:    status = "Bluetooth ready. Tap Scan."
+        case .poweredOn:    status = "Bluetooth ready."
         case .poweredOff:   status = "Bluetooth is off"
         case .unauthorized: status = "Bluetooth unauthorized — check Settings"
         default:            status = "Bluetooth unavailable"
@@ -65,13 +65,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                         rssi RSSI: NSNumber) {
         self.peripheral = peripheral
         centralManager.stopScan()
-        status = "Device Found. Connecting..."
+        status = "Device found; connecting..."
         centralManager.connect(peripheral, options: nil)
     }
 
     func centralManager(_ central: CBCentralManager,
                         didConnect peripheral: CBPeripheral) {
-        status = "Connected! Setting up..."
+        status = "Connected; setting up..."
         isConnected = true
         peripheral.delegate = self
         peripheral.discoverServices([SERVICE_UUID])
@@ -109,7 +109,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         for char in characteristics where char.uuid == CHARACTERISTIC_UUID {
             dataCharacteristic = char
             peripheral.setNotifyValue(true, for: char)
-            status = "Ready. Type something and tap Send."
+            status = "Ready; Type and tap send."
         }
     }
 
@@ -126,7 +126,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             return
         }
         response = string
-        status = "Response received!"
+        status = "Response received"
     }
 
     func peripheral(_ peripheral: CBPeripheral,
