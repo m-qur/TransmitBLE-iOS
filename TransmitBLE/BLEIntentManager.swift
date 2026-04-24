@@ -66,8 +66,10 @@ final class BLEIntentManager: NSObject {
                     return
                 }
 
+                self.state = .idle
                 self.didFinish = false
                 self.operationID = UUID()
+
                 let currentID = self.operationID
 
                 self.pendingMessage = message
@@ -75,8 +77,8 @@ final class BLEIntentManager: NSObject {
                 self.completion = { result in
                     self.bleQueue.async {
                         guard self.operationID == currentID else { return }
-                        continuation.resume(with: result)
                         self.finish(result)
+                        continuation.resume(with: result)
                     }
                 }
 
@@ -103,29 +105,15 @@ final class BLEIntentManager: NSObject {
         guard !didFinish else { return }
         didFinish = true
 
-        let cb = completion
-        completion = nil
-        cb?(result)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.hardReset()
-        }
-    }
-
-    private func hardReset() {
         centralManager.stopScan()
 
         if let p = peripheral {
             centralManager.cancelPeripheralConnection(p)
         }
 
-        peripheral = nil
-        characteristic = nil
-        pendingMessage = nil
-
-        state = .idle
-        didFinish = false
-        operationID = UUID()
+        let cb = completion
+        completion = nil
+        cb?(result)
     }
 
     private func scheduleTimeout(seconds: Double, error: BLEIntentError, id: UUID) {
@@ -209,8 +197,8 @@ extension BLEIntentManager: CBPeripheralDelegate {
 
         guard state == .discoveringServices else { return }
 
-        if let error = error {
-            finish(.failure(error))
+        if error != nil {
+            finish(.failure(error!))
             return
         }
 
@@ -231,8 +219,8 @@ extension BLEIntentManager: CBPeripheralDelegate {
 
         guard state == .discoveringCharacteristics else { return }
 
-        if let error = error {
-            finish(.failure(error))
+        if error != nil {
+            finish(.failure(error!))
             return
         }
 
