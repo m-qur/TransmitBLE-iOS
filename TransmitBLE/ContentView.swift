@@ -169,7 +169,7 @@ struct ContentView: View {
             .disabled(!ble.isConnected || userInput.isEmpty)
 
             GroupBox("Response") {
-                Text(ble.response.isEmpty ? "Nothing yet..." : ble.response)
+                Text(ble.response.isEmpty ? "Waiting for data" : ble.response)
                     .font(.system(.body, design: .monospaced))
                     .frame(maxWidth: .infinity, minHeight: 60, alignment: .topLeading)
                     .padding(4)
