@@ -3,12 +3,12 @@ import SwiftUI
 
 struct SendToBLEIntent: AppIntent {
 
-    static var title: LocalizedStringResource = "Send to Windows via BLE"
-    static var description = IntentDescription("Sends text to the Windows PC over BLE and returns the response.")
+    static var title: LocalizedStringResource = "Ask via BLE"
+    static var description = IntentDescription("Gets response via BLE")
 
     static var openAppWhenRun: Bool = true
 
-    @Parameter(title: "Message", description: "The text to send to Windows")
+    @Parameter(title: "Message", description: "Input to send")
     var message: String
 
     func perform() async throws -> some ReturnsValue<String> {
@@ -22,8 +22,8 @@ struct TransmitBLEShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: SendToBLEIntent(),
             phrases: [
-                "Send BLE message with \(.applicationName)",
-                "Transmit to Windows with \(.applicationName)"
+                "Send BLE message via \(.applicationName)",
+                "Transmit via BLE with \(.applicationName)"
             ],
             shortTitle: "Send to Windows",
             systemImageName: "antenna.radiowaves.left.and.right"
